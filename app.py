@@ -54,7 +54,11 @@ class myHandler(BaseHTTPRequestHandler):
 				self.send_header('Content-type',mimetype)
 				self.end_headers()
 				data=f.read()
-				self.wfile.write(data)
+				
+				try:
+					self.wfile.write(data)
+				except:
+					self.wfile.write(bytes(data, 'UTF-8'))
 				f.close()
 			return
 
