@@ -7,6 +7,10 @@
 	<body>
 	    <!-- HTML to display MQTT topic values ------------------------------------------------->
 		<div><strong>IOT Server</strong></div><br>
+		<textarea style="resize:none; border: none" readonly rows="1" cols="10">User Id</textarea>
+		<textarea style="resize:none; border: none" readonly rows="1" cols="10">Board Id</textarea><br/>
+		<textarea style="resize:none" id='userId' rows="1" cols="10">User</textarea>
+		<textarea  style="resize:none" id='boarId' rows="1" cols="10">rp</textarea><br/>
 		<button id="led" onclick="led()">led</button>
 		<h1 id="led_state">off</h1>
 		<h1>sensor</h1>
@@ -79,7 +83,10 @@
 
     // called when a message arrives
   function led() {
-    sendMessage(myName+':led_state:0')
+    boarId=document.getElementById("boarId").value;
+	userIdId=document.getElementById("userId").value;
+	
+    sendMessage(userId+boarId+':led_state:0')
   }
   // called when a message arrives
   myName='leo'
@@ -88,7 +95,9 @@
     n=msg.split(":")[0];
 	f=msg.split(":")[1];
 	v=msg.split(":")[2]
-	if(myName!=n){
+	boarId=document.getElementById("boarId").value;
+	userId=document.getElementById("userId").value;
+	if(boarId+userId==n){
 		switch(f) {
 		  case 'led_state':
 			led_state=v;
