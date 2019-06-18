@@ -1,3 +1,4 @@
+import passw
 import name
 import paho.mqtt.client as mqtt
 import os, urlparse
@@ -57,8 +58,8 @@ mqttc.on_subscribe = on_subscribe
 
 
 # Connect
-mqttc.username_pw_set('yknslymn', 'aNawCSKnpSea')
-mqttc.connect('postman.cloudmqtt.com', 14970)
+mqttc.username_pw_set(passw.user, passw.psw)
+mqttc.connect(passw.server, passw.port)
 topic='/cloudmqtt'
 # Start subscribe, with QoS level 0
 mqttc.subscribe(topic, 0)
